@@ -1,8 +1,15 @@
 import { SaveOutlined } from "@mui/icons-material";
 import { Button, Grid, TextField, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useForm } from "../../hooks/useForm";
 import { ImageGallery } from "../components/ImageGallery";
 
 export const Noteview = () => {
+
+  const { active: note } = useSelector( state => state.journal )
+
+  const { body, title, date, onInputChange, formState } = useForm( note )
+
   return (
     <Grid
       container
@@ -30,6 +37,9 @@ export const Noteview = () => {
           placeholder="Ingrese un titulo"
           label="Titulo"
           sx={{ border: "none", mb: 1 }}
+          name='title'
+          value={ title }
+          onChange={onInputChange}
         />
         <TextField
           type="text"
@@ -38,6 +48,9 @@ export const Noteview = () => {
           multiline
           placeholder="Que sucedio en el dia de hoy"
           minRows={5}
+          name='body'
+          value={ body }
+          onChange={onInputChange}
         />
       </Grid>
       <ImageGallery />
