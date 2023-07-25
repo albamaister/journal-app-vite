@@ -1,6 +1,7 @@
 import { updateProfile } from "firebase/auth"
 import { firebaseAuth } from "../../firebase/config"
 import { loginWithEmailAndPassword, logoutFirebase, registerUserWithEmailAndPassword, signInWithGoogle } from "../../firebase/providers"
+import { clearsNoteLogout } from "../journal/journalSlice"
 import { checkingCredentials, login, logout } from "./authSlice"
 
 export const checkingAuthentication = ( email, password ) => {
@@ -46,6 +47,7 @@ export const startLoginWithEmailPassword = ({email, password}) => {
 export const startLogout = () => {
     return async ( dispatch ) => {
         await logoutFirebase()
+        dispatch(clearsNoteLogout())
         dispatch( logout({}) )
     }
 }

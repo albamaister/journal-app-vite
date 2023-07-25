@@ -3,7 +3,7 @@ import { IconButton, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { startNewNote } from "../../store/journal/thunks";
 import { JournalLayout } from "../layout/JournalLayout";
-import { Noteview } from "../view/noteview";
+import { NoteView } from "../view";
 import { NothingSelectedView } from "../view/NothingSelectedView";
 
 export const JournalPage = () => {
@@ -19,7 +19,7 @@ export const JournalPage = () => {
   return (
     <JournalLayout>
       { !!active ?
-        <Noteview/> :
+        <NoteView/> :
         <NothingSelectedView />
       }
 
